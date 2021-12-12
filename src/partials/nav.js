@@ -1,5 +1,6 @@
 import "../styles/style.css";
 import blogtech from "../assets/img/blogtech.png";
+import {A} from 'hookrouter';
 
 const Nav = () => {
   return (
@@ -12,13 +13,13 @@ const Nav = () => {
       <div className="navigation">
         <ul>
           <li>
-            <a href="">Blogs</a>
+            <A href="/blog">Blogs</A>
           </li>
           <li>
-            <a href="">About</a>
+            <A href="/about">About</A>
           </li>
           <li>
-            <a href="">New Blog</a>
+            <A href="">New Blog</A>
           </li>
         </ul>
       </div>
