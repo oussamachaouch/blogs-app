@@ -6,14 +6,14 @@ const Nav = () => {
   return (
     <div className="nav">
       <div className="site-title">
-        <a href="">
+        <a href="/">
           <img className="navImg" src={blogtech} />
         </a>
       </div>
       <div className="navigation">
         <ul>
           <li>
-            <A href="/blog">Blogs</A>
+            <A href="/">Blogs</A>
           </li>
           <li>
             <A href="/about">About</A>

@@ -8,7 +8,7 @@ const Blog = () => {
   useEffect(()=>{
     dispatch(main());
   },[]);
-  const blogs = useSelector((state) => state.Blog.blogs);
+  const blogs = useSelector((state) => state.Blogs.blogs);
   return (
     <>
     <div className="content">
@@ -21,7 +21,7 @@ const Blog = () => {
                 <div className="blogContentDisplay">
                   <div className="blogImage"></div>
                   <div className="blogDescription">
-                    <h3 className="title">{blog.title}</h3>
+                    <h3 className="title"><a href={`/showblog/${blog._id}`}>{blog.title}</a></h3>
                     <p className="snippet">
                       {blog.snippet}
                     </p>

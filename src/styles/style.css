@@ -9,6 +9,7 @@
   position: fixed;
   width: -webkit-fill-available;
   background: white;
+  z-index: 1;
   
 }
 .site-title{
@@ -42,7 +43,7 @@
 
 /* //////////////////////////////////////////// Home css //////////////////////////////////////////// */
 .home{
-  padding-top: 129px;
+  /* padding-top: 129px; */
 }
 .HomeHeader{
   width: 100%!important;
