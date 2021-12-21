@@ -10,10 +10,9 @@ import ShowBlog from "./component/showBlog";
 import NewBlog from "./component/newBlog";
 
 const routes = {
-  "/": () => <Home />,
-  "/showblog/:id": ({ id }) => <ShowBlog id={id} />,
-  "/blog": () => <Home />,
-  "/about": () => <About />,
+  '/': () => <Home />,
+  '/showblog/:id': ({id}) => <ShowBlog id={id} />,
+  '/about': () => <About />,
   "/newBlog": () => <NewBlog />,
 };
 
@@ -22,7 +21,9 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      {routeResult || <NotFound />}
+      <div className="Container">
+        {routeResult || <NotFound /> }
+      </div>
       <Footer />
     </div>
   );

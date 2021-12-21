@@ -26,7 +26,7 @@ const Blog = () => {
                     <div className="blogContentDisplay">
                       <div className="blogImage"></div>
                       <div className="blogDescription">
-                        <h3 className="title">{blog.title}</h3>
+                        <h3 className="title"><a href={`/showblog/${blog._id}`}>{blog.title}</a></h3>
                         <p className="snippet">{blog.snippet}</p>
                         <h3 className="body">{blog.body}</h3>
                         <button onClick={deletedBlog(blog._id)}>

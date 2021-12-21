@@ -1,3 +1,4 @@
 export const GET_BLOGS = "GET_BLOGS";
 export const DELETE_BLOG_SUCCESS = "DELETE_BLOG_SUCCESS";
 export const CREATE_BLOG_SUCCESS = "CREATE_BLOG_SUCCESS";
+export const SHOW_BLOGS = 'GET_BLOGS';
