@@ -1,6 +1,6 @@
 
 import Blog from './blog';
-import Triangle from '../assets/svg/triangle';
+// import Triangle from '../assets/svg/triangle';
 const Home = () => {
     return ( 
         <div className="home">

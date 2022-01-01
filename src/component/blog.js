@@ -8,9 +8,10 @@ const Blog = () => {
   useEffect(() => {
     dispatch(main());
   }, []);
-  const blogs = useSelector((state) => state.Blog.blogs);
+  const blogs = useSelector((state) => state.Blogs.blogs);
+
   const deletedBlog = (id) => {
-    console.log(id);
+    console.log("the id ", id);
     dispatch(deleteBlog(id));
   };
   return (
@@ -18,24 +19,24 @@ const Blog = () => {
       <div className="content">
         {blogs &&
           blogs.length > 0 &&
-          blogs.map((blog) => {
+          blogs.map((blog, index) => {
             return (
-              <div className="blogShape">
+              <div key={index} className="blogShape">
                 <div className="single">
-                  <a href="">
+                  <a href={`/showblog/${blog._id}`}>
                     <div className="blogContentDisplay">
                       <div className="blogImage"></div>
                       <div className="blogDescription">
-                        <h3 className="title"><a href={`/showblog/${blog._id}`}>{blog.title}</a></h3>
+                        <h3 className="title">{blog.title}</h3>
                         <p className="snippet">{blog.snippet}</p>
-                        <h3 className="body">{blog.body}</h3>
-                        <button onClick={deletedBlog(blog._id)}>
-                          <i>Delete</i>
-                        </button>
+                        {/* <h3 className="body">{blog.body}</h3> */}
                       </div>
                     </div>
                   </a>
                 </div>
+                <button onClick={deletedBlog(blog._id)} style={{position: 'relative',float: 'right',marginRight: '33px',marginTop: '-110px'}}> 
+                  <i>Delete</i>
+                </button>
               </div>
             );
           })}

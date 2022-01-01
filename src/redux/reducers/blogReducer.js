@@ -5,7 +5,7 @@ import {
 } from "../constant";
 const initialState = {
   blogs: [],
-  status: "",
+  deleteStatus: "",
   blog: {}
 };
 
@@ -24,7 +24,7 @@ const BlogReducer = (state = initialState, action) => {
     case DELETE_BLOG_SUCCESS:
       return {
         ...state,
-        status: action.payload,
+        deleteStatus: action.payload,
       };
     default:
       return initialState;
