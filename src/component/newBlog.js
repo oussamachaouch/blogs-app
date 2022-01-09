@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import logo from './logo.svg';
-import "./newBlog.css";
+import "../styles/newBlog.css";
 // REACT BOOTSTRAP COMPONENTS
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -42,7 +42,6 @@ const NewBlog = () => {
       const blog = { ...form, snippet: form.body.substring(0, 58) + "..." };
       dispatch(createBlog(blog));
       //   alert("Your blog is created successfully!");
-      navigate("/", true);
     }
   };
 
@@ -65,10 +64,12 @@ const NewBlog = () => {
 
   return (
     <div className="App d-flex flex-column align-items-center">
-      <h1>Enter Your New Blog</h1>
+      <h1 className="blogWelcome">Show Us Your Knowledge</h1>
       <Form style={{ width: "750px" }}>
         <Form.Group>
-          <Form.Label>Title</Form.Label>
+          <Form.Label>
+            <div className="blogTitle">Title :</div>
+          </Form.Label>
           <Form.Control
             type="text"
             onChange={(e) => {
@@ -81,21 +82,28 @@ const NewBlog = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Body</Form.Label>
+          <Form.Label>
+            <div className="blogBody">Body :</div>
+          </Form.Label>
           <Form.Control
             as="textarea"
             onChange={(e) => setField("body", e.target.value)}
             isInvalid={!!errors.body}
+            style={{ width: "100%", height: "20em" }}
           />
           <Form.Control.Feedback type="invalid">
             {errors.body}
           </Form.Control.Feedback>
         </Form.Group>
         <br />
-        <Button onClick={handleSubmit} className="submit">Submit</Button>
-        <Button variant="danger" onClick={cancel} className="cancel">
-          Cancel
-        </Button>
+        <div className="buttonSC">
+          <Button onClick={handleSubmit} className="submit">
+            Submit
+          </Button>
+          <Button variant="danger" onClick={cancel} className="cancel">
+            Cancel
+          </Button>
+        </div>
       </Form>
     </div>
   );

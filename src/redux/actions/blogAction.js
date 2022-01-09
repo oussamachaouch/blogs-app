@@ -4,6 +4,8 @@ import {
   CREATE_BLOG_SUCCESS,
 } from "../constant";
 import axios from "axios";
+import { navigate } from "hookrouter";
+// import { navigate } from "hookrouter";
 /**
  * get blog action
  * @param {*} data
@@ -35,16 +37,14 @@ export const deleteBlogSuccess = (status) => {
 };
 
 export const deleteBlog = (id) => {
-  
   return async (dispatch) => {
-    return await console.log('this id',id)
-    // axios.delete(`http://localhost:3000/blogs/${id}`)
-    //   .then((res) => {
-    //     dispatch(deleteBlogSuccess(res.status));
-    //   })
-    //   .catch((err) => {
-    //     return err;
-    //   });
+    return await axios.delete(`http://localhost:3000/blogs/${id}`)
+      .then((res) => {
+        dispatch(deleteBlogSuccess(res.status));
+      })
+      .catch((err) => {
+        return err;
+      });
   };
 };
 
@@ -60,8 +60,8 @@ export const createBlog = (data) => {
     return await axios
       .post("http://localhost:3000/blogs", data)
       .then((res) => {
-        console.log(res.status);
         dispatch(createBlogSuccess(res));
+        navigate("/", true);
       })
       .catch((err) => {
         return err;
