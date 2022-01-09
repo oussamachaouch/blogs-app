@@ -6,7 +6,7 @@ import {
 const initialState = {
   blogs: [],
   deleteStatus: "",
-  blog: {}
+  blog: {},
 };
 
 const BlogReducer = (state = initialState, action) => {

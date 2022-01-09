@@ -10,9 +10,18 @@ const Blog = () => {
   }, []);
   const blogs = useSelector((state) => state.Blogs.blogs);
 
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
   const deletedBlog = (id) => {
-    console.log("the id ", id);
-    dispatch(deleteBlog(id));
+    console.log("the id ", typeof(id));
+    dispatch(deleteBlog(id))
+    .then(()=>{
+      dispatch(main());
+    });
+    // alert("the blog is deleted successfully!");
+    // refreshPage();
   };
   return (
     <>
@@ -34,7 +43,15 @@ const Blog = () => {
                     </div>
                   </a>
                 </div>
-                <button onClick={deletedBlog(blog._id)} style={{position: 'relative',float: 'right',marginRight: '33px',marginTop: '-110px'}}> 
+                <button
+                  onClick={() => deletedBlog(blog._id)}
+                  style={{
+                    position: "relative",
+                    float: "right",
+                    marginRight: "33px",
+                    marginTop: "-110px",
+                  }}
+                >
                   <i>Delete</i>
                 </button>
               </div>
