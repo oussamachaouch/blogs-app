@@ -10,18 +10,11 @@ const Blog = () => {
   }, []);
   const blogs = useSelector((state) => state.Blogs.blogs);
 
-  const refreshPage = () => {
-    window.location.reload(false);
-  };
-
   const deletedBlog = (id) => {
-    console.log("the id ", typeof(id));
     dispatch(deleteBlog(id))
     .then(()=>{
       dispatch(main());
     });
-    // alert("the blog is deleted successfully!");
-    // refreshPage();
   };
   return (
     <>

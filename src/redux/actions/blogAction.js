@@ -5,7 +5,6 @@ import {
 } from "../constant";
 import axios from "axios";
 import { navigate } from "hookrouter";
-// import { navigate } from "hookrouter";
 /**
  * get blog action
  * @param {*} data
