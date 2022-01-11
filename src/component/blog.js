@@ -1,4 +1,5 @@
 import "../styles/style.css";
+import "../styles/blog.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { main, deleteBlog } from "../redux/actions/blogAction";
@@ -11,8 +12,7 @@ const Blog = () => {
   const blogs = useSelector((state) => state.Blogs.blogs);
 
   const deletedBlog = (id) => {
-    dispatch(deleteBlog(id))
-    .then(()=>{
+    dispatch(deleteBlog(id)).then(() => {
       dispatch(main());
     });
   };
@@ -44,8 +44,9 @@ const Blog = () => {
                     marginRight: "33px",
                     marginTop: "-110px",
                   }}
+                  className="button"
                 >
-                  <i>Delete</i>
+                  <i>X</i>
                 </button>
               </div>
             );

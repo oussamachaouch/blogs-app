@@ -66,7 +66,7 @@ const NewBlog = () => {
     <div className="App d-flex flex-column align-items-center">
       <h1 className="blogWelcome">Show Us Your Knowledge</h1>
       <Form style={{ width: "750px" }}>
-        <Form.Group>
+        <Form.Group className="margin">
           <Form.Label>
             <div className="blogTitle">Title :</div>
           </Form.Label>
@@ -81,7 +81,7 @@ const NewBlog = () => {
             {errors.title}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="margin">
           <Form.Label>
             <div className="blogBody">Body :</div>
           </Form.Label>
@@ -95,7 +95,6 @@ const NewBlog = () => {
             {errors.body}
           </Form.Control.Feedback>
         </Form.Group>
-        <br />
         <div className="buttonSC">
           <Button onClick={handleSubmit} className="submit">
             Submit
