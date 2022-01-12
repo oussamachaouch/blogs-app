@@ -3,6 +3,7 @@ import "../styles/blog.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { main, deleteBlog } from "../redux/actions/blogAction";
+import { MdDelete } from "react-icons/md";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const Blog = () => {
                   }}
                   className="button"
                 >
-                  <i>X</i>
+                  <MdDelete />
                 </button>
               </div>
             );
