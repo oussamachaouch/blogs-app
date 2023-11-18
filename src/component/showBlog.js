@@ -1,4 +1,4 @@
-// import '../styles/style.css';
+import '../styles/showBlog.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { getBlogById } from '../redux/actions/showBlogAction';
@@ -12,9 +12,15 @@ const ShowBlog = ({id}) => {
   return (
     <>
     {blog ?
-      <div style={{marginLeft: '10px',minHeight: '600px'}}>
-        <h1>{blog.title}</h1>
-        <div>{blog.body}</div>
+      <div className='showBlogContainer'>
+        <div className='titleDiv'>
+          <h1>
+            {blog.title}
+          </h1>
+        </div>
+        <div className='bodyDiv'>
+          {blog.body}
+        </div>
       </div>
      :
       <div> nothing found </div>

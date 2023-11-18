@@ -1,0 +1,23 @@
+.showBlogContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    min-height: 600px;
+}
+
+.showBlogContainer > * {
+    margin-bottom: 20px;
+}
+
+.titleDiv{
+    border-bottom: 1px solid grey;
+    width: 50%;
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.bodyDiv{
+    width: 50%;
+    font-family:  charter, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: larger;
+}

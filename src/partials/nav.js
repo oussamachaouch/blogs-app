@@ -11,7 +11,7 @@ const Nav = () => {
         </a>
       </div>
       <div className="navigation">
-        <ul>
+        <ul style={{marginTop: '18px'}}>
           <li>
             <A href="/">Blogs</A>
           </li>
