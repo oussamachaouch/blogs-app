@@ -2,27 +2,29 @@ import Footer from "./partials/footer";
 import Nav from "./partials/nav";
 import Home from "./component/home";
 import "./styles/App.css";
-import { useRoutes } from "hookrouter";
-// import Blog from "./component/blog";
 import NotFound from "./component/common/notFound";
 import About from "./component/about";
 import ShowBlog from "./component/showBlog";
 import NewBlog from "./component/newBlog";
-
-const routes = {
-  '/': () => <Home />,
-  '/showblog/:id': ({id}) => <ShowBlog id={id} />,
-  '/about': () => <About />,
-  "/newBlog": () => <NewBlog />,
-};
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  const routeResult = useRoutes(routes);
   return (
     <div className="App">
-      <Nav />
-      <div className="Container">
-        {routeResult || <NotFound /> }
+      
+      <div>
+        {
+          <BrowserRouter>
+          <Nav />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/admin" element={<Home />} />
+              <Route path="/showblog/:id" element={<ShowBlog />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/newBlog" element={<NewBlog />} />
+            </Routes>
+          </BrowserRouter>|| <NotFound /> 
+        }
       </div>
       <Footer />
     </div>

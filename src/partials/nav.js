@@ -1,8 +1,9 @@
 import "../styles/style.css";
 import blogtech from "../assets/img/blogtech.png";
-import {A} from 'hookrouter';
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
+  const location = window.location;
   return (
     <div className="nav">
       <div className="site-title">
@@ -10,19 +11,34 @@ const Nav = () => {
           <img className="navImg" src={blogtech} />
         </a>
       </div>
-      <div className="navigation">
+      <nav className="navigation">
         <ul style={{marginTop: '18px'}}>
+        {location.pathname === "/admin" ? (
+          <>
+            <li>
+              <NavLink to="/admin" className={({ isActive }) => isActive ? "isActiveNav" : "text-black"}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/newBlog" className={({ isActive }) => isActive ? "isActiveNav" : "text-black"}>
+                New Blog
+              </NavLink>
+            </li>
+          </>
+        ) : 
           <li>
-            <A href="/">Blogs</A>
-          </li>
-          <li>
-            <A href="/about">About</A>
-          </li>
-          <li>
-            <A href="/newBlog">New Blog</A>
-          </li>
+            <NavLink to="/" className={({ isActive }) => isActive ? "isActiveNav" : "text-black"}>
+              Home
+            </NavLink>
+          </li>}
+        <li>
+          <NavLink to="/about" className={({ isActive }) => isActive ? "isActiveNav" : "text-black"}>
+            About
+          </NavLink>
+        </li>
         </ul>
-      </div>
+      </nav>
     </div>
   );
 };

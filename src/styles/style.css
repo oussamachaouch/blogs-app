@@ -2,7 +2,7 @@
 .nav{
   display: flex;
   justify-content: space-around;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
   text-transform: uppercase;
   /* flex: 2 1; */
@@ -10,19 +10,21 @@
   width: -webkit-fill-available;
   background: white;
   z-index: 1;
-  
 }
 .site-title{
   max-width: 141.297px !important;
+  height: 10vh !important;
   display: flex;
   align-items: center;
 }
 .navigation{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  height: 10vh !important;
 }
 .navImg{
   width: 100%;
+  border-bottom: 5px solid #24e270;
 }
 .nav ul{
   display: flex;
@@ -37,34 +39,40 @@
   font-size: 3em;
 }
 .nav p, nav a{
-  color: #777;
-  font-weight: 300;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: initial;
+}
+
+.isActiveNav{
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: initial;
+  border-bottom: 2px solid #24e270;
 }
 
 /* //////////////////////////////////////////// Home css //////////////////////////////////////////// */
 .home{
   /* padding-top: 129px; */
 }
-.HomeHeader{
-  width: 100%!important;
-  max-width: 100%!important;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+.header{
+    width: 100%!important;
+    max-width: 100%!important;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: 379px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+    margin-bottom: 10%;
+    border-bottom: 5px solid #24e270;
 }
-
-.HomeHeaderChild1{
-  padding-top: 0 !important;
-  padding-left: 50px !important;
-  padding-bottom: 0 !important;
-  padding-right: 50px;
+.headerChild1{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
 }
-
 .blogName{
   float: none !important;
   top: 0 !important;
@@ -84,25 +92,16 @@
   min-width: 25px !important;
   text-align: left !important;
   font-family: "Comic Sans MS";
+  font-weight: 700;
+  text-transform: uppercase;
 }
-
-.HomeHeaderChild2{
+.headerChild2{
   background-image: url("../assets/img/backHeader.jpg") !important;
   background-size: cover !important;
 
-  background-position: 50% 50% !important;
-  padding-top: 0 !important;
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  /* padding-right: 50px !important; */
-  margin-right: 0 !important;
-  width: 50%;
+   background-position: 0 50% !important;
 }
-
-.HomeHeaderChild21{
+.headerChild21{
   display: block !important;
   float: none !important;
   top: 0 !important;
@@ -123,18 +122,15 @@
   margin-bottom: 0 !important;
   /* background: white; */
 }
-
 .TriangleShape{
   width: 40vmin;
   height: 40vmin;
   pointer-events: none;
   background-color: white;
 }
-
 .homeText{
   font-family:  charter, Georgia, Cambria, "Times New Roman", Times, serif;
 }
-
 /* //////////////////////////////////////////// blog css //////////////////////////////////////////// */
 .content{
   display: flex;
@@ -143,11 +139,10 @@
   justify-content: center;
   align-items: center;
   list-style: none;
-  padding: 10% 0;
 }
 
 .blogShape{
-  width: 50rem;
+  width: 70rem;
   margin: 0 1.5625rem 1.5625rem;
 }
 
@@ -157,20 +152,31 @@
   box-shadow: 0 2px 8px 0 rgb(0 0 0 / 15%);
   transition: box-shadow .25s ease-in;
 }
+.blog-link{
+  text-decoration: none;
+  color: black;
+}
 .blogContentDisplay{
   display: flex;
   flex-direction: row;
 }
 .blogImage{
-  background-image: url(https://content.codecademy.com/projects/project_thumbnails/web-dev-path/js-react-animal-fun-fact.jpg);
+  /* background-image: url(https://content.codecademy.com/projects/project_thumbnails/web-dev-path/js-react-animal-fun-fact.jpg); */
   max-width: 100%;
   height: 12.0625rem;
   background-size: cover;
   flex:2;
+  border-right: 5px solid #24e270;
+}
+.blogImage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .blogDescription{
-  flex:4;
+  flex:6;
   padding: 1.25rem;
+  max-width: 75%;
 }
 
 .title{
@@ -191,6 +197,10 @@
   display: inline-block;
   overflow: hidden;
   font-family:  charter, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.new-blog-container{
+  margin-top: 10vh;
 }
 
 
@@ -225,4 +235,5 @@
     margin-right: 270px !important;
     margin-left: 270px !important;
     padding-left: 15px !important;
+    color: #24e270;
   }

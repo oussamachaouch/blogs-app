@@ -1,0 +1,9 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+}
+.title{
+    font-size: x-large;
+    font-weight: bold;
+    padding-bottom: 3%;
+}

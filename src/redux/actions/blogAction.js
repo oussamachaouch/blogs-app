@@ -4,7 +4,6 @@ import {
   CREATE_BLOG_SUCCESS,
 } from "../constant";
 import axios from "axios";
-import { navigate } from "hookrouter";
 /**
  * get blog action
  * @param {*} data
@@ -54,13 +53,13 @@ export const createBlogSuccess = (data) => {
   };
 };
 
-export const createBlog = (data) => {
+export const createBlog = (data,navigate) => {
   return async (dispatch) => {
     return await axios
       .post("http://localhost:3000/blogs", data)
       .then((res) => {
         dispatch(createBlogSuccess(res));
-        navigate("/", true);
+        navigate("/", { replace: true }); // Navigate to home after creating blog
       })
       .catch((err) => {
         return err;

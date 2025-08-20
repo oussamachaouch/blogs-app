@@ -1,7 +1,6 @@
 .showBlogContainer{
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: center;
     min-height: 600px;
 }
@@ -14,10 +13,35 @@
     border-bottom: 1px solid grey;
     width: 50%;
     font-family: 'Mochiy Pop P One', sans-serif;
+    text-align: center;
 }
 
 .bodyDiv{
     width: 50%;
     font-family:  charter, Georgia, Cambria, "Times New Roman", Times, serif;
     font-size: larger;
+    white-space: pre-line;  
+    vertical-align: bottom;
+}
+.imageDiv{
+    padding-bottom: 1vh;
+}
+.sectionTitle{
+    padding-bottom: 1vh;
+    display: flex;
+}
+.sectionTitleP1{
+    font-weight: bold;
+    padding-right: 1vw;
+}
+.sectionTitleP2{
+    font-weight: normal;
+    font-style: italic;
+    color: grey;
+    padding-left: 1vw;
+}
+
+.sectionBody{
+    padding-bottom: 1vh;
+    padding-left: 1vw;
 }
