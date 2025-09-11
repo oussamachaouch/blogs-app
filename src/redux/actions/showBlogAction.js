@@ -11,7 +11,7 @@ export const showBlogAction = (data) => {
 
 export const getBlogById = (id) => {
     return async (dispatch) => {
-        return await axios.get(`http://localhost:3000/blogs/${id}`)
+        return await axios.get(`${process.env.REACT_APP_BASE_URL}/blogs/${id}`)
         .then((res) => {
             dispatch(showBlogAction(res.data));
         })

@@ -28,10 +28,10 @@ const ShowBlog = () => {
           <div className='bodyDiv'>
             {blog.sections && blog.sections.map((section, index) => {
                 return(
-                  <>
-                    <h3 key={index} className='sectionTitle'><p className='sectionTitleP1'>{index+1}.</p><p className='sectionTitleP2'>{section.title}</p></h3>
-                    <p key={index} className='sectionBody' >{section.body}</p>
-                  </>
+                  <div key={index}>
+                    <h3 className='sectionTitle'><p className='sectionTitleP1'>{index+1}.</p><p className='sectionTitleP2'>{section.title}</p></h3>
+                    <p className='sectionBody' dangerouslySetInnerHTML={{ __html: section.body }} />
+                  </div>
                 );
               })
             }

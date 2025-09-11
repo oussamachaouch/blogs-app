@@ -6,15 +6,18 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 // BOOTSTRAP LIBRARY
 import "bootstrap/dist/css/bootstrap.min.css";
+// OTHERS
 import { useDispatch } from "react-redux";
 import { createBlog } from "../redux/actions/blogAction";
 import { useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 
 const NewBlog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({spread: 'false'});
   const [sections, setSection] = useState([]);
   const [errors, setErrors] = useState({});
 
@@ -73,7 +76,7 @@ const NewBlog = () => {
       // No errors! Put any logic here for the form submission!
       const blog = { ...form, snippet: sections[0].body.substring(0, 58) + "...", sections: [...sections] };
       dispatch(createBlog(blog,navigate));
-      //   alert("Your blog is created successfully!");
+      //alert("Your blog is created successfully!");
     }
   };
 
@@ -100,7 +103,7 @@ const NewBlog = () => {
         if (!section.title || section.title === "") sectionErrors.title = "title cannot be empty!";
         else if (section.title.length > 100) sectionErrors.title = "title is too long!";
         // body errors
-        if (!section.body || section.body === "") sectionErrors.body = "section body cannot be blank!";
+        if (!section.body || section.body.trim() === "" || section.body === "<p><br></p>") sectionErrors.body = "section body cannot be blank!";
         else if (section.body.length > 1000) sectionErrors.body = "section body is too long!";
         if(Object.keys(sectionErrors).length > 0){
           newErrors.sections[index] = sectionErrors;
@@ -123,7 +126,7 @@ const NewBlog = () => {
       <Form style={{ width: "750px" }}>
         <Form.Group className="margin">
           <Form.Label>
-            <div className="blogTitle">Title :</div>
+            <div className="blogTitle">Title*</div>
           </Form.Label>
           <Form.Control
             type="text"
@@ -138,7 +141,7 @@ const NewBlog = () => {
         </Form.Group>
 
         <Form.Group controlId="defaultImage" className="mb-3">
-          <Form.Label className="blogTitle">Copy paste default image link</Form.Label>
+          <Form.Label className="blogTitle">Copy paste default image link*</Form.Label>
           <Form.Control
             type="text"
             onChange={(e) => {
@@ -152,7 +155,7 @@ const NewBlog = () => {
         </Form.Group> 
 
         <Form.Group controlId="blogImage" className="mb-3">
-          <Form.Label className="blogTitle">Copy paste blog image link</Form.Label>
+          <Form.Label className="blogTitle">Copy paste blog image link*</Form.Label>
           <Form.Control
             type="text"
             onChange={(e) => {
@@ -164,6 +167,20 @@ const NewBlog = () => {
             {errors.blogImage}
           </Form.Control.Feedback>
         </Form.Group> 
+        
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <div className="blogTitle">Newsletter option*</div>
+          </Form.Label>
+          <Form.Select aria-label="Newsletter option" isInvalid={!!errors.spread}
+            defaultValue={"false"}
+            onChange={(e) => {
+              setField("spread", e.target.value );
+            }}>
+            <option value="true" onClick={(e) => {setField("spread", true);}}>Spread the blog to subscribers</option>
+            <option value="false" onClick={(e) => {setField("spread", false);}}>Do not spread the blog to subscribers</option>
+          </Form.Select>
+        </Form.Group>
 
         {/* <Form.Group controlId="formDefaultFile" className="mb-3">
           <Form.Label className="blogTitle">Choose default image</Form.Label>
@@ -189,7 +206,7 @@ const NewBlog = () => {
         
         <Form.Group className="margin sectionContainer">
           <Form.Label>
-            <div className="blogBody">Sections :</div>
+            <div className="blogBody">Sections*</div>
           </Form.Label>
 
           <div className="addSectionContainer">
@@ -224,7 +241,7 @@ const NewBlog = () => {
                 {errors.sections?.[index]?.title}
               </Form.Control.Feedback>
 
-              <Form.Label>
+              {/* <Form.Label>
                 <div className="blogTitle sectionBodyTitle">Section body :</div>
               </Form.Label>
               <Form.Control
@@ -240,7 +257,33 @@ const NewBlog = () => {
               />
               <Form.Control.Feedback type="invalid">
                 {errors.sections?.[index]?.body}
-              </Form.Control.Feedback>
+              </Form.Control.Feedback> */}
+              <Form.Group className="mb-3">
+                  <Form.Label>
+                    <div className="blogTitle sectionBodyTitle">Section body :</div>
+                  </Form.Label>
+                  <div
+                    className={`quill-wrapper ${errors.sections?.[index]?.body ? "is-invalid" : ""}`}
+                    style={{ border: errors.sections?.[index]?.body ? "1px solid #dc3545" : "1px solid #ced4da", borderRadius: "0.375rem" }}
+                  >
+                    <ReactQuill
+                      theme="snow"
+                      value={section.body}
+                      onChange={(value) => {
+                        const newSections = [...sections]; 
+                        newSections[index].body = value;
+                        setSection(newSections);
+                      }}
+                      placeholder="Write your blog content here..."
+                      style={{ height: "200px", marginBottom: "50px" }}
+                    />
+                  </div>
+                  {!!errors.sections?.[index]?.body && (
+                    <Form.Control.Feedback type="invalid" style={{ display: "block" }}>
+                      {errors.sections?.[index]?.body}
+                    </Form.Control.Feedback>
+                  )}
+                </Form.Group>
             </div>
           ))
           

@@ -1,16 +1,18 @@
 import "../styles/style.css";
 import "../styles/blog.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { main, deleteBlog } from "../redux/actions/blogAction";
-import { MdDelete } from "react-icons/md";
+import { MdDelete,MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 
 const Blog = () => {
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(main());
-  }, []);
+    dispatch(main(page))
+  }, [page]);
   const blogs = useSelector((state) => state.Blogs.blogs);
 
   const deletedBlog = (id) => {
@@ -22,41 +24,67 @@ const Blog = () => {
   return (
     <>
       <div className="content">
-        {blogs &&
-          blogs.length > 0 &&
-          blogs.map((blog, index) => {
-            return (
-              <div key={index} className="blogShape">
-                <div className="single">
-                  <Link className="blog-link" to={{pathname: `/showblog/${blog._id}`}}>
-                    <div className="blogContentDisplay">
-                      <div className="blogImage"><img src={blog.defaultImage} alt="image"/></div>
-                      <div className="blogDescription">
-                        <h3 className="title">{blog.title}</h3>
-                        <p className="snippet">{blog.snippet}</p>
-                        {/* <h3 className="body">{blog.body}</h3> */}
-                      </div>
+        <div className="newsArea">
+          <div className="newsBox">
+            <h1 className="newsTitle">Blogs</h1>
+            <p className="newsDescription">
+              Welcome to our blog section! Here, you can find a variety of articles and posts on different topics. Feel free to explore and enjoy reading!
+            </p>
+          </div>
+        </div>
+        <div className="blogArea">
+          <div className="blogBox">
+            {blogs&& blogs.data &&
+              blogs.data.length > 0 &&
+              blogs.data.map((blog, index) => {
+                return (
+                  <div key={index} className="blogShape">
+                    <div className="single">
+                      <Link className="blog-link" to={{pathname: `/showblog/${blog._id}`}}>
+                        <div className="blogContentDisplay">
+                          <div className="blogImage"><img src={blog.defaultImage} alt="image"/></div>
+                          <div className="blogDescription">
+                            <h3 className="title">{blog.title}</h3>
+                            <p className="snippet" dangerouslySetInnerHTML={{ __html: blog.snippet }} ></p>
+                            {/* <h3 className="body">{blog.body}</h3> */}
+                          </div>
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
-                </div>
-                {location.pathname === "/admin" ? (
-                  <button
-                    onClick={() => deletedBlog(blog._id)}
-                    style={{
-                      position: "relative",
-                      float: "right",
-                      marginRight: "33px",
-                      marginTop: "-110px",
-                    }}
-                    className="button"
-                  >
-                    <MdDelete />
-                  </button>
-                ) : null}
+                    {location.pathname === "/admin" ? (
+                      <button
+                        onClick={() => deletedBlog(blog._id)}
+                        style={{
+                          position: "relative",
+                          float: "right",
+                          marginRight: "33px",
+                          marginTop: "-110px",
+                        }}
+                        className="button"
+                      >
+                        <MdDelete />
+                      </button>
+                    ) : null}
+                  </div>
+                );
+              })}
+          </div>
+          <div className="paginationContainer">
+            <div className="paginationContent">
+              <button disabled={page === 1} onClick={() => setPage(page - 1)} className="paginationButton">
+                <MdArrowBackIos />
+              </button>
 
-              </div>
-            );
-          })}
+              <span>
+                Page {page} of {blogs.totalPages}
+              </span>
+
+              <button disabled={page === blogs.totalPages} onClick={() => setPage(page + 1)} className="paginationButton">
+                <MdArrowForwardIos />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

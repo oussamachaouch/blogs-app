@@ -6,7 +6,10 @@ import NotFound from "./component/common/notFound";
 import About from "./component/about";
 import ShowBlog from "./component/showBlog";
 import NewBlog from "./component/newBlog";
+import Newsletter from "./component/newsletter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./component/common/scrollToTop";
+import Unsubscribed from "./component/unsubscibed";
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
       <div>
         {
           <BrowserRouter>
+          <ScrollToTop />
           <Nav />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -22,6 +26,9 @@ function App() {
               <Route path="/showblog/:id" element={<ShowBlog />} />
               <Route path="/about" element={<About />} />
               <Route path="/newBlog" element={<NewBlog />} />
+              <Route path="/newsletter" element={<Newsletter />} />
+              <Route path="/unsubscribed/:token" element={<Unsubscribed />} />
+              <Route path="**" element={<NotFound />} />
             </Routes>
           </BrowserRouter>|| <NotFound /> 
         }

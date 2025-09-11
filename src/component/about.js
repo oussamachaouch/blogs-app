@@ -1,11 +1,12 @@
 import React from "react";
 import "../styles/about.css";
 import Header from "../partials/header";
+import aboutImage from '../assets/img/about.jpg';
 
 const About = () => {
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="container">
                 <div className="about-text">
                     <div className="title">🧠 About BLOGTECH</div>
@@ -24,7 +25,7 @@ const About = () => {
                 </div>
                 <div className="about-image">
                     <img
-                        src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                        src={aboutImage}
                         alt="About BLOGTECH"
                         className="img-fluid"
                     />

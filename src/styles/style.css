@@ -62,10 +62,11 @@
     max-width: 100%!important;
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    grid-auto-rows: 379px;
+    grid-auto-rows: 45vh;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
-    margin-bottom: 10%;
-    border-bottom: 5px solid #24e270;
+    margin-top: -7%;
+    margin-bottom: 5%;
+    border-bottom: 5px solid #24e23a;
 }
 .headerChild1{
   display: flex;
@@ -99,7 +100,7 @@
   background-image: url("../assets/img/backHeader.jpg") !important;
   background-size: cover !important;
 
-   background-position: 0 50% !important;
+   background-position: 0 -6% !important;
 }
 .headerChild21{
   display: block !important;
@@ -203,37 +204,139 @@
   margin-top: 10vh;
 }
 
+.paginationContainer{
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.paginationContent{
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.paginationButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    font-family: Georgia, serif;
+    font-size: larger;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: red;
+    background-color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    outline: none;
+}
+
 
 /* //////////////////////////////////////////// footer css //////////////////////////////////////////// */
 .footer{
     color: #777;
     text-align: center;
-    height: 540px;
+    height: 70vh;
     /* flex:6; */
-  }
+}
 
-  .footerDiv1{
-    background-image: url(https://irp-cdn.multiscreensite.com/1bbf786c/dms3rep/multi/mountains.png) !important;
-    background-size: cover !important;
-    background-color: rgba(255,255,255,1) !important;
+.footerDiv1{
+  background-image: url(https://irp-cdn.multiscreensite.com/1bbf786c/dms3rep/multi/mountains.png) !important;
+  background-size: cover !important;
+  background-color: rgba(255,255,255,1) !important;
 
-    padding-top: 100px !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    background-position: 50% 0 !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    padding-bottom: 40px !important;
-    height: inherit;
+  padding-top: 100px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  background-position: 50% 0 !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  padding-bottom: 40px !important;
+  height: inherit;
 
-    display: flex;
-    align-items: center;
-  }
-  .footerDiv2{
-    padding-top: 0 !important;
-    width: 100% !important;
-    margin-right: 270px !important;
-    margin-left: 270px !important;
-    padding-left: 15px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.footerDiv2{
+  padding-top: 0 !important;
+  width: 100% !important;
+  margin-right: 270px !important;
+  margin-left: 270px !important;
+  padding-left: 15px !important;
+  color: #24e270;
+}
+.footerDiv3{
+  margin-top: 4vh;
+  .footerDiv3Icon{
+    width: 5vw;
+    height: 5vh;
     color: #24e270;
   }
+}
+
+/* ///////////////////////////////// newsletter css /////////////////////////////////////////// */
+
+.newsletter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+.newsletterForm{
+
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+.subscribeInput{
+    width: 300px;
+    height: 40px;
+    border: 2px solid #24e270;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 16px;
+    outline: none;
+}
+.subscribeButton{
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #24e270;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.formEmail{
+    margin: 3px 10px;
+    width: 300px
+}
+
+::placeholder {
+  text-align: center;
+}
+
+.newsletterImageContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.newsletterImage{
+  object-fit: cover;
+  width: 40%;
+}
+
+.unsubscribedImage{
+  object-fit: cover;
+  width: 70%;
+}

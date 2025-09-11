@@ -37,6 +37,11 @@ const Nav = () => {
             About
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/newsletter" className={({ isActive }) => isActive ? "isActiveNav" : "text-black"}>
+            Newsletter
+          </NavLink>
+        </li>
         </ul>
       </nav>
     </div>
