@@ -22,71 +22,60 @@ const Blog = () => {
   };
   const location = useLocation();
   return (
-    <>
-      <div className="content">
-        <div className="newsArea">
-          <div className="newsBox">
-            <h1 className="newsTitle">Blogs</h1>
-            <p className="newsDescription">
-              Welcome to our blog section! Here, you can find a variety of articles and posts on different topics. Feel free to explore and enjoy reading!
-            </p>
-          </div>
-        </div>
-        <div className="blogArea">
-          <div className="blogBox">
-            {blogs&& blogs.data &&
-              blogs.data.length > 0 &&
-              blogs.data.map((blog, index) => {
-                return (
-                  <div key={index} className="blogShape">
-                    <div className="single">
-                      <Link className="blog-link" to={{pathname: `/showblog/${blog._id}`}}>
-                        <div className="blogContentDisplay">
-                          <div className="blogImage"><img src={blog.defaultImage} alt="image"/></div>
-                          <div className="blogDescription">
-                            <h3 className="title">{blog.title}</h3>
-                            <p className="snippet" dangerouslySetInnerHTML={{ __html: blog.snippet }} ></p>
-                            {/* <h3 className="body">{blog.body}</h3> */}
-                          </div>
-                        </div>
-                      </Link>
+    <div className="blogArea">
+      <h2 className="blogMainTitle font-bold mb-4">Latest Blogs</h2>
+      <div className="blogBox">
+        {blogs&& blogs.data &&
+          blogs.data.length > 0 &&
+          blogs.data.map((blog, index) => {
+            return (
+              <div key={index} className="blogShape">
+                <div className="single">
+                  <Link className="blog-link" to={{pathname: `/showblog/${blog._id}`}}>
+                    <div className="blogContentDisplay">
+                      <div className="blogImage"><img src={blog.defaultImage} alt="image"/></div>
+                      <div className="blogDescription">
+                        <h3 className="title">{blog.title}</h3>
+                        <p className="snippet" dangerouslySetInnerHTML={{ __html: blog.snippet }} ></p>
+                        {/* <h3 className="body">{blog.body}</h3> */}
+                      </div>
                     </div>
-                    {location.pathname === "/admin" ? (
-                      <button
-                        onClick={() => deletedBlog(blog._id)}
-                        style={{
-                          position: "relative",
-                          float: "right",
-                          marginRight: "33px",
-                          marginTop: "-110px",
-                        }}
-                        className="button"
-                      >
-                        <MdDelete />
-                      </button>
-                    ) : null}
-                  </div>
-                );
-              })}
-          </div>
-          <div className="paginationContainer">
-            <div className="paginationContent">
-              <button disabled={page === 1} onClick={() => setPage(page - 1)} className="paginationButton">
-                <MdArrowBackIos />
-              </button>
+                  </Link>
+                </div>
+                {location.pathname === "/admin" ? (
+                  <button
+                    onClick={() => deletedBlog(blog._id)}
+                    style={{
+                      position: "relative",
+                      float: "right",
+                      marginRight: "33px",
+                      marginTop: "-110px",
+                    }}
+                    className="button"
+                  >
+                    <MdDelete />
+                  </button>
+                ) : null}
+              </div>
+            );
+          })}
+      </div>
+      <div className="paginationContainer">
+        <div className="paginationContent">
+          <button disabled={page === 1} onClick={() => setPage(page - 1)} className="paginationButton">
+            <MdArrowBackIos />
+          </button>
 
-              <span>
-                Page {page} of {blogs.totalPages}
-              </span>
+          <span>
+            Page {page} of {blogs.totalPages}
+          </span>
 
-              <button disabled={page === blogs.totalPages} onClick={() => setPage(page + 1)} className="paginationButton">
-                <MdArrowForwardIos />
-              </button>
-            </div>
-          </div>
+          <button disabled={page === blogs.totalPages} onClick={() => setPage(page + 1)} className="paginationButton">
+            <MdArrowForwardIos />
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
