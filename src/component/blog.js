@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { main, deleteBlog } from "../redux/actions/blogAction";
 import { MdDelete,MdArrowBackIos,MdArrowForwardIos } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Blog = () => {
   const [page, setPage] = useState(1);
@@ -14,6 +15,7 @@ const Blog = () => {
     dispatch(main(page))
   }, [page]);
   const blogs = useSelector((state) => state.Blogs.blogs);
+  const { t } = useTranslation();
 
   const deletedBlog = (id) => {
     dispatch(deleteBlog(id)).then(() => {
@@ -23,7 +25,7 @@ const Blog = () => {
   const location = useLocation();
   return (
     <div className="blogArea">
-      <h2 className="blogMainTitle font-bold mb-4">Latest Blogs</h2>
+      <h2 className="blogMainTitle font-bold mb-4">{t("Blog.title")}</h2>
       <div className="blogBox">
         {blogs&& blogs.data &&
           blogs.data.length > 0 &&
@@ -67,7 +69,7 @@ const Blog = () => {
           </button>
 
           <span>
-            Page {page} of {blogs.totalPages}
+            {t("Blog.page")} {page} {t("Blog.of")} {blogs.totalPages}
           </span>
 
           <button disabled={page === blogs.totalPages} onClick={() => setPage(page + 1)} className="paginationButton">

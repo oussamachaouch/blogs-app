@@ -1,6 +1,7 @@
 import "../styles/style.css";
 import blogtech from "../assets/img/blogtech.png";
 import { NavLink } from "react-router-dom";
+import LanguageSelector from "../component/common/languageSelector";
 
 const Nav = () => {
   const location = window.location;
@@ -41,6 +42,11 @@ const Nav = () => {
           <NavLink to="/newsletter" className={({ isActive }) => isActive ? "isActiveNav" : "text-black"}>
             Newsletter
           </NavLink>
+        </li>
+        <li>
+          <div className="navbar-right">
+            <LanguageSelector />
+          </div>
         </li>
         </ul>
       </nav>

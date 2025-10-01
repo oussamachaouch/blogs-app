@@ -1,25 +1,22 @@
-import React from "react";
 import "../styles/about.css";
-import Header from "../partials/header";
 import aboutImage from '../assets/img/about.jpg';
+import { useTranslation } from "react-i18next";
 
 const About = () => {
+    const { t } = useTranslation();
     return (
         <div>
             {/* <Header /> */}
             <div className="container">
                 <div className="about-text">
-                    <div className="title">🧠 About BLOGTECH</div>
+                    <div className="title">🧠 {t("About.title")}</div>
                     <div>
                         <p>
-                            Welcome to BLOGTECH — your go-to platform for everything Tech. Whether you're a seasoned developer, 
-                            an aspiring tech enthusiast, or someone simply curious about the latest in technology, BLOGTECH brings you insightful articles, 
-                            in-depth tutorials, and the latest updates from the world of software, hardware, AI, and beyond.
+                            {t("About.content1")}
                             <br /><br />
-                            Our mission is to build a vibrant community where ideas are shared, knowledge is spread, and innovation is celebrated. 
-                            At BLOGTECH, we believe that technology should be accessible, inspiring, and ever-evolving — just like our content.
+                            {t("About.content2")}
                             <br /><br />
-                            Stay curious. Stay updated. Stay ahead — with BLOGTECH.
+                            {t("About.content3")}
                         </p>
                     </div>
                 </div>

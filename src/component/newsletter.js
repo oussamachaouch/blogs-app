@@ -10,18 +10,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import subscriptionImage from '../assets/img/subscription.jpg';
+import { useTranslation } from "react-i18next";
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const baseURL = process.env.REACT_APP_BASE_URL;
+  const { t } = useTranslation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
-    if (!email || email === '') newErrors.email = 'email cannot be empty!';
-    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'email is invalid!';
+    if (!email || email === '') newErrors.email = t('Newsletter.emailEmpty');
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = t('Newsletter.emailInvalid');
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -31,21 +33,21 @@ const Newsletter = () => {
       await axios.post(`${baseURL}/newsletter/subscribe`, { email });
       navigate("/", { replace: true });
     } catch (err) {
-      setErrors({ email: err.response?.data || 'Email already exists!' });
+      setErrors({ email: err.response?.data || t('Newsletter.emailExist') });
     }
   };
   
   return (
     <div className="newsletter">
       {/* <Header /> */}
-      <h1 className='text-4xl font-bold mb-4'>Subscribe to our Newsletter</h1>
+      <h1 className='text-4xl font-bold mb-4'>{t('Newsletter.title')}</h1>
       <div className='newsletterImageContainer'><img className='newsletterImage' src={subscriptionImage} alt="image"/></div>
       <Form className='newsletterForm'>
         <FormGroup controlId="formEmail" className='formEmail'>
           <Form.Control
             type="text"
             value={email}
-            placeholder='Enter your email'
+            placeholder={t('Newsletter.enterYourEmail')}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -57,7 +59,7 @@ const Newsletter = () => {
         </FormGroup>
         <div className="buttonSC">
             <Button onClick={handleSubmit} className="subscribeButton" variant="primary" type="submit">
-              Submit
+              {t('Newsletter.submit')}
             </Button>
         </div>
       </Form>

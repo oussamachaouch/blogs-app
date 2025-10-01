@@ -1,13 +1,15 @@
-import '../styles/showBlog.css';
+                                                                  import '../styles/showBlog.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import { getBlogById } from '../redux/actions/showBlogAction';
 import { useParams } from "react-router-dom"
 import Header from '../partials/header';
+import { useTranslation } from "react-i18next";
 
 const ShowBlog = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   useEffect(()=>{
     dispatch(getBlogById(id));
   },[]);
@@ -38,7 +40,7 @@ const ShowBlog = () => {
           </div>
         </div>
       :
-        <div> nothing found </div>
+        <div>{t('ShowBlog.nothingFound')}</div>
       }
     </>
   );

@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const News = () => {
     const [news, setNews] = useState([]);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -21,7 +23,7 @@ const News = () => {
 
     return ( 
         <div className="newsArea">
-            <h2 className="newsMainTitle font-bold mb-4">News</h2>
+            <h2 className="newsMainTitle font-bold mb-4">{t('News.news')}</h2>
             <div className="newsBox">
                 {news && news.length > 0 ? (
                     news.map((item, index) => (

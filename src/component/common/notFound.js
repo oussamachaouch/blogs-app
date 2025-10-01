@@ -1,9 +1,12 @@
 // import '../styles/style.css';
+import { useTranslation } from 'react-i18next';
+
 
 const NotFound = () => {
+  const { t } = useTranslation();
   return (
     <>
-    <div>Not found component</div>
+    <div>{t('Common.notFound')}</div>
     </>
   );
 };

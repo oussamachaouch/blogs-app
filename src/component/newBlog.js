@@ -12,6 +12,7 @@ import { createBlog } from "../redux/actions/blogAction";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import { useTranslation } from "react-i18next";
 
 const NewBlog = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const NewBlog = () => {
   const [form, setForm] = useState({spread: 'false'});
   const [sections, setSection] = useState([]);
   const [errors, setErrors] = useState({});
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Initialize the form with default values
@@ -84,27 +86,27 @@ const NewBlog = () => {
     const { title, defaultImage, blogImage, sections } = form;
     const newErrors = {};
     // title errors
-    if (!title || title === "") newErrors.title = "title cannot be blank!";
-    else if (title.length > 100) newErrors.title = "title is too long!";
+    if (!title || title === "") newErrors.title = t("NewBlog.titleError1");
+    else if (title.length > 100) newErrors.title = t("NewBlog.titleError2");
 
-    if (!defaultImage || defaultImage === "") newErrors.defaultImage = "default image src cannot be empty!";
-    if (!blogImage || blogImage === "") newErrors.blogImage = "blog image src cannot be empty!";
+    if (!defaultImage || defaultImage === "") newErrors.defaultImage = t("NewBlog.defaultImageError");
+    if (!blogImage || blogImage === "") newErrors.blogImage = t("NewBlog.blogImageError");
 
     // sections errors
     if (!sections || sections.length === 0) {
-      alert("You must have at least one section!");
-      newErrors.sections = [{ other: "You must have at least one section!" }];
+      alert(t("NewBlog.otherError"));
+      newErrors.sections = [{ other: t("NewBlog.otherError") }];
     }
     else {
       newErrors.sections = [];
       sections.forEach((section, index) => {
         const sectionErrors = {};
         // title errors
-        if (!section.title || section.title === "") sectionErrors.title = "title cannot be empty!";
-        else if (section.title.length > 100) sectionErrors.title = "title is too long!";
+        if (!section.title || section.title === "") sectionErrors.title = t("NewBlog.sectionTitleError1");
+        else if (section.title.length > 100) sectionErrors.title = t("NewBlog.sectionTitleError2");
         // body errors
-        if (!section.body || section.body.trim() === "" || section.body === "<p><br></p>") sectionErrors.body = "section body cannot be blank!";
-        else if (section.body.length > 1000) sectionErrors.body = "section body is too long!";
+        if (!section.body || section.body.trim() === "" || section.body === "<p><br></p>") sectionErrors.body = t("NewBlog.sectionBodyError1");
+        else if (section.body.length > 1000) sectionErrors.body = t("NewBlog.sectionBodyError2");
         if(Object.keys(sectionErrors).length > 0){
           newErrors.sections[index] = sectionErrors;
         }
@@ -122,11 +124,11 @@ const NewBlog = () => {
 
   return (
     <div className="new-blog-container d-flex flex-column align-items-center">
-      <h1 className="blogWelcome">Show Us Your Knowledge</h1>
+      <h1 className="blogWelcome">{t("NewBlog.title")}</h1>
       <Form style={{ width: "750px" }}>
         <Form.Group className="margin">
           <Form.Label>
-            <div className="blogTitle">Title*</div>
+            <div className="blogTitle">{t("NewBlog.blogTitle")}*</div>
           </Form.Label>
           <Form.Control
             type="text"
@@ -141,7 +143,7 @@ const NewBlog = () => {
         </Form.Group>
 
         <Form.Group controlId="defaultImage" className="mb-3">
-          <Form.Label className="blogTitle">Copy paste default image link*</Form.Label>
+          <Form.Label className="blogTitle">{t("NewBlog.blogDefaultImage")}*</Form.Label>
           <Form.Control
             type="text"
             onChange={(e) => {
@@ -155,7 +157,7 @@ const NewBlog = () => {
         </Form.Group> 
 
         <Form.Group controlId="blogImage" className="mb-3">
-          <Form.Label className="blogTitle">Copy paste blog image link*</Form.Label>
+          <Form.Label className="blogTitle">{t("NewBlog.blogImage")}*</Form.Label>
           <Form.Control
             type="text"
             onChange={(e) => {
@@ -170,15 +172,15 @@ const NewBlog = () => {
         
         <Form.Group className="mb-3">
           <Form.Label>
-            <div className="blogTitle">Newsletter option*</div>
+            <div className="blogTitle">{t("NewBlog.NewsletterOption")}*</div>
           </Form.Label>
           <Form.Select aria-label="Newsletter option" isInvalid={!!errors.spread}
             defaultValue={"false"}
             onChange={(e) => {
               setField("spread", e.target.value );
             }}>
-            <option value="true" onClick={(e) => {setField("spread", true);}}>Spread the blog to subscribers</option>
-            <option value="false" onClick={(e) => {setField("spread", false);}}>Do not spread the blog to subscribers</option>
+            <option value="true" onClick={(e) => {setField("spread", true);}}>{t("NewBlog.SelectOption1")}</option>
+            <option value="false" onClick={(e) => {setField("spread", false);}}>{t("NewBlog.SelectOption2")}</option>
           </Form.Select>
         </Form.Group>
 
@@ -294,10 +296,10 @@ const NewBlog = () => {
 
         <div className="buttonSC">
           <Button onClick={handleSubmit} className="submit">
-            Submit
+            {t("NewBlog.submit")}
           </Button>
           <Button variant="danger" onClick={cancel} className="cancel">
-            Cancel
+            {t("NewBlog.cancel")}
           </Button>
         </div>
       </Form>

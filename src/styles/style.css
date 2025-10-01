@@ -53,6 +53,12 @@
   border-bottom: 2px solid #24e270;
 }
 
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
 /* //////////////////////////////////////////// Home css //////////////////////////////////////////// */
 .home{
   /* padding-top: 129px; */
@@ -424,4 +430,24 @@
 .unsubscribedImage{
   object-fit: cover;
   width: 70%;
+}
+
+/* ///////////////////////////////// Loader css /////////////////////////////////////////// */
+
+.loaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
 }
